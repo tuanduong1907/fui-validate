@@ -149,6 +149,9 @@
   <li><strong>minLength (Độ Dài Tối Thiểu):</strong></li>
   <pre><code>Validator.minLength("#password", 6, "Mật khẩu phải có ít nhất 6 ký tự");</code></pre>
 
+  <li><strong>maxLength (Độ Dài Tối Đa):</strong></li>
+  <pre><code>Validator.maxLength("#description", 255, "Mô tả không được vượt quá 255 ký tự");</code></pre>
+
   <li><strong>isConfirmed (Xác Nhận):</strong></li>
   <pre><code>Validator.isConfirmed("#password", function() {
     return document.querySelector("#password-confirm").value;
@@ -160,4 +163,18 @@
   <li><strong>isAlphabet (Chỉ Chứa Chữ Cái):</strong></li>
   <pre><code>Validator.isAlphabet("#fullname", "Vui lòng chỉ nhập chữ cái");</code></pre>
 
-  <li><strong>isPhoneNumber (Số Điện Thoại Hợp Lệ):</strong></
+  <li><strong>isPhoneNumber (Số Điện Thoại Hợp Lệ):</strong></li>
+  <pre><code>Validator.isPhoneNumber("#phone", "Vui lòng nhập số điện thoại hợp lệ");</code></pre>
+
+  <li><strong>hasSpecialChar (Chứa Ký Tự Đặc Biệt):</strong></li>
+  <pre><code>Validator.hasSpecialChar("#password", "Mật khẩu phải chứa ít nhất một ký tự đặc biệt");</code></pre>
+
+  <li><strong>isUrl (URL Hợp Lệ):</strong></li>
+  <pre><code>Validator.isUrl("#website", "Vui lòng nhập URL hợp lệ");</code></pre>
+
+  <li><strong>isNumber (Chỉ Chứa Số):</strong></li>
+  <pre><code>Validator.isNumber("#age", "Vui lòng nhập số");</code></pre>
+
+  <li><strong>isImageUploaded (Hình Ảnh Đã Tải Lên):</strong></li>
+  <pre><code>Validator.isImageUploaded("#avatar", "Vui lòng tải lên hình ảnh");</code></pre>
+</ol>
