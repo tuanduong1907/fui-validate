@@ -4,7 +4,7 @@
   <li>Thêm file JS trước thẻ đóng <code>&lt;/body&gt;</code></li>
 </ul>
 
-<pre><code>&lt;script src="https://cdn.jsdelivr.net/gh/tuanduong1907/fui-validate-js@main/validation.min.js"&gt;&lt;/script&gt;</code></pre>
+<pre><code>&lt;script src="https://cdn.jsdelivr.net/gh/tuanduong1907/fui-validate@main/fui-validate.min.js"&gt;&lt;/script&gt;</code></pre>
 
 ## Example:
 
