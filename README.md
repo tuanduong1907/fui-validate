@@ -27,10 +27,6 @@
         &lt;input type="password" id="password-confirm" name="password-confirm" placeholder="Xác nhận mật khẩu..." /&gt;
         &lt;p class="form-message"&gt;&lt;/p&gt;
     &lt;/div&gt;
-    &lt;div class="form-group"&gt;
-        &lt;input type="file" id="image-upload" name="image-upload" /&gt;
-        &lt;p class="form-message"&gt;&lt;/p&gt;
-    &lt;/div&gt;
     &lt;button type="submit"&gt;Submit&lt;/button&gt;
 &lt;/form&gt;</code></pre>
 
@@ -47,14 +43,6 @@
         Validator.isConfirmed("#password-confirm", function() {
             return document.querySelector("#password").value;
         }, "Mật khẩu xác nhận không khớp"),
-        Validator.isStrongPassword("#password", "Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường, số và ký tự đặc biệt"),
-        Validator.isAlphabet("#fullname", "Vui lòng chỉ nhập chữ cái"),
-        Validator.isPhoneNumber("#phone", "Vui lòng nhập số điện thoại hợp lệ"),
-        Validator.hasSpecialChar("#password", "Mật khẩu phải có ít nhất một ký tự đặc biệt"),
-        Validator.isUrl("#website", "Vui lòng nhập URL hợp lệ"),
-        Validator.isNumber("#number", "Vui lòng nhập số hợp lệ"),
-        Validator.isImageUploaded("#image-upload", "Vui lòng upload hình ảnh"),
-        Validator.maxLength("#fullname", 50, "Vui lòng nhập tối đa 50 ký tự")
     ],
     onSubmit: function (data) {
         console.log(data);  // Dữ liệu form sau khi xác thực thành công
@@ -94,14 +82,14 @@
       <td>Kiểm tra xem độ dài của giá trị nhập vào có đạt yêu cầu tối thiểu hay không.</td>
     </tr>
     <tr>
-      <td><code>maxLength</code></td>
-      <td><code>Validator.maxLength("Selector", maxLength(number), "Message")</code></td>
-      <td>Kiểm tra xem độ dài của giá trị nhập vào có vượt quá yêu cầu tối đa hay không.</td>
-    </tr>
-    <tr>
       <td><code>isConfirmed</code></td>
       <td><code>Validator.isConfirmed("Selector", function() { return value; }, "Message")</code></td>
       <td>Kiểm tra xem giá trị nhập vào có khớp với giá trị của một trường khác (ví dụ: xác nhận mật khẩu).</td>
+    </tr>
+    <tr>
+      <td><code>isStrongPassword</code></td>
+      <td><code>Validator.isStrongPassword("Selector", "Message")</code></td>
+      <td>Kiểm tra xem mật khẩu có đủ mạnh hay không. Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường, số và ký tự đặc biệt.</td>
     </tr>
     <tr>
       <td><code>isAlphabet</code></td>
@@ -123,24 +111,37 @@
       <td><code>Validator.isUrl("Selector", "Message")</code></td>
       <td>Kiểm tra xem giá trị nhập vào có phải là một URL hợp lệ hay không.</td>
     </tr>
-    <tr>
-      <td><code>isNumber</code></td>
-      <td><code>Validator.isNumber("Selector", "Message")</code></td>
-      <td>Kiểm tra xem giá trị nhập vào có phải là số hay không.</td>
-    </tr>
-    <tr>
-      <td><code>isImageUploaded</code></td>
-      <td><code>Validator.isImageUploaded("Selector", "Message")</code></td>
-      <td>Kiểm tra xem người dùng đã upload hình ảnh hay chưa.</td>
-    </tr>
-    <tr>
-      <td><code>isStrongPassword</code></td>
-      <td><code>Validator.isStrongPassword("Selector", "Message")</code></td>
-      <td>Kiểm tra xem mật khẩu có đủ mạnh hay không. Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường, số và ký tự đặc biệt.</td>
-    </tr>
   </tbody>
 </table>
 
 <p>
   <strong>- Tham số Selector:</strong> Truyền vào <code>id</code> của thẻ <code>input</code> cần validate.<br />
-  <strong>- Tham số Message:</strong> Tham số này không bắt buộc. Nếu không được cung cấp, hệ thống sẽ dùng thông báo mặc định
+  <strong>- Tham số Message:</strong> Tham số này không bắt buộc. Nếu không được cung cấp, hệ thống sẽ dùng thông báo mặc định.<br />
+  <strong>- Tham số minLength(number):</strong> Chỉ áp dụng cho <code>Validator.minLength</code>, nếu không được cung cấp sẽ bỏ qua kiểm tra độ dài.<br />
+  <strong>- Tham số function() { return value; }:</strong> Chỉ áp dụng cho <code>Validator.isConfirmed</code>. Hàm này trả về giá trị cần so sánh với trường khác.
+</p>
+
+<h3>📚 Ví dụ:</h3>
+
+<ol>
+  <li><strong>isRequired (Bắt buộc):</strong></li>
+  <pre><code>Validator.isRequired("#fullname", "Vui lòng nhập tên đầy đủ của bạn");</code></pre>
+
+  <li><strong>isEmail (Email Hợp Lệ):</strong></li>
+  <pre><code>Validator.isEmail("#email", "Vui lòng nhập địa chỉ email hợp lệ");</code></pre>
+
+  <li><strong>minLength (Độ Dài Tối Thiểu):</strong></li>
+  <pre><code>Validator.minLength("#password", 6, "Mật khẩu phải có ít nhất 6 ký tự");</code></pre>
+
+  <li><strong>isConfirmed (Xác Nhận):</strong></li>
+  <pre><code>Validator.isConfirmed("#password", function() {
+    return document.querySelector("#password-confirm").value;
+  }, "Mật khẩu xác nhận không khớp");</code></pre>
+
+  <li><strong>isStrongPassword (Mật Khẩu Mạnh):</strong></li>
+  <pre><code>Validator.isStrongPassword("#password", "Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường, số và ký tự đặc biệt");</code></pre>
+
+  <li><strong>isAlphabet (Chỉ Chứa Chữ Cái):</strong></li>
+  <pre><code>Validator.isAlphabet("#fullname", "Vui lòng chỉ nhập chữ cái");</code></pre>
+
+  <li><strong>isPhoneNumber (Số Điện Thoại Hợp Lệ):</strong></
