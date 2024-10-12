@@ -43,6 +43,11 @@
         Validator.isConfirmed("#password-confirm", function() {
             return document.querySelector("#password").value;
         }, "Mật khẩu xác nhận không khớp"),
+        Validator.isStrongPassword("#password", "Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường, số và ký tự đặc biệt"),
+        Validator.isAlphabet("#fullname", "Vui lòng chỉ nhập chữ cái"),
+        Validator.isPhoneNumber("#phone", "Vui lòng nhập số điện thoại hợp lệ"),
+        Validator.hasSpecialChar("#password", "Mật khẩu phải có ít nhất một ký tự đặc biệt"),
+        Validator.isUrl("#website", "Vui lòng nhập URL hợp lệ"),
     ],
     onSubmit: function (data) {
         console.log(data);  // Dữ liệu form sau khi xác thực thành công
@@ -134,8 +139,8 @@
   <pre><code>Validator.minLength("#password", 6, "Mật khẩu phải có ít nhất 6 ký tự");</code></pre>
 
   <li><strong>isConfirmed (Xác Nhận):</strong></li>
-  <pre><code>Validator.isConfirmed("#password", function() {
-    return document.querySelector("#password-confirm").value;
+  <pre><code>Validator.isConfirmed("#password-confirm", function() {
+    return document.querySelector("#password").value;
   }, "Mật khẩu xác nhận không khớp");</code></pre>
 
   <li><strong>isStrongPassword (Mật Khẩu Mạnh):</strong></li>
@@ -144,4 +149,12 @@
   <li><strong>isAlphabet (Chỉ Chứa Chữ Cái):</strong></li>
   <pre><code>Validator.isAlphabet("#fullname", "Vui lòng chỉ nhập chữ cái");</code></pre>
 
-  <li><strong>isPhoneNumber (Số Điện Thoại Hợp Lệ):</strong></
+  <li><strong>isPhoneNumber (Số Điện Thoại Hợp Lệ):</strong></li>
+  <pre><code>Validator.isPhoneNumber("#phone", "Vui lòng nhập số điện thoại hợp lệ");</code></pre>
+
+  <li><strong>hasSpecialChar (Ký Tự Đặc Biệt):</strong></li>
+  <pre><code>Validator.hasSpecialChar("#password", "Mật khẩu phải có ít nhất một ký tự đặc biệt");</code></pre>
+
+  <li><strong>isUrl (URL Hợp Lệ):</strong></li>
+  <pre><code>Validator.isUrl("#website", "Vui lòng nhập URL hợp lệ");</code></pre>
+</ol>
