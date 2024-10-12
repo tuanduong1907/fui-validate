@@ -158,7 +158,7 @@
   }, "Mật khẩu xác nhận không khớp");</code></pre>
 
   <li><strong>isStrongPassword (Mật Khẩu Mạnh):</strong></li>
-  <pre><code>Validator.isStrongPassword("#password", "Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường, số và ký tự đặc biệt");</code></pre>
+  <pre><code>Validator.isStrongPassword("#password", "Mật khẩu chưa đủ mạnh");</code></pre>
 
   <li><strong>isAlphabet (Chỉ Chứa Chữ Cái):</strong></li>
   <pre><code>Validator.isAlphabet("#fullname", "Vui lòng chỉ nhập chữ cái");</code></pre>
