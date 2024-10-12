@@ -57,6 +57,7 @@
 </ul>
 
 <h3>⚙️ Validation Rules:</h3>
+<h3>⚙️ Validation Rules:</h3>
 <table>
   <thead>
     <tr>
@@ -82,14 +83,14 @@
       <td>Kiểm tra xem độ dài của giá trị nhập vào có đạt yêu cầu tối thiểu hay không.</td>
     </tr>
     <tr>
+      <td><code>maxLength</code></td>
+      <td><code>Validator.maxLength("Selector", maxLength(number), "Message")</code></td>
+      <td>Kiểm tra xem độ dài của giá trị nhập vào có vượt quá yêu cầu tối đa hay không.</td>
+    </tr>
+    <tr>
       <td><code>isConfirmed</code></td>
       <td><code>Validator.isConfirmed("Selector", function() { return value; }, "Message")</code></td>
       <td>Kiểm tra xem giá trị nhập vào có khớp với giá trị của một trường khác (ví dụ: xác nhận mật khẩu).</td>
-    </tr>
-    <tr>
-      <td><code>isStrongPassword</code></td>
-      <td><code>Validator.isStrongPassword("Selector", "Message")</code></td>
-      <td>Kiểm tra xem mật khẩu có đủ mạnh hay không. Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường, số và ký tự đặc biệt.</td>
     </tr>
     <tr>
       <td><code>isAlphabet</code></td>
@@ -111,13 +112,28 @@
       <td><code>Validator.isUrl("Selector", "Message")</code></td>
       <td>Kiểm tra xem giá trị nhập vào có phải là một URL hợp lệ hay không.</td>
     </tr>
+    <tr>
+      <td><code>isNumber</code></td>
+      <td><code>Validator.isNumber("Selector", "Message")</code></td>
+      <td>Kiểm tra xem giá trị nhập vào có phải là số hay không.</td>
+    </tr>
+    <tr>
+      <td><code>isImageUploaded</code></td>
+      <td><code>Validator.isImageUploaded("Selector", "Message")</code></td>
+      <td>Kiểm tra xem người dùng đã upload hình ảnh hay chưa.</td>
+    </tr>
+    <tr>
+      <td><code>isStrongPassword</code></td>
+      <td><code>Validator.isStrongPassword("Selector", "Message")</code></td>
+      <td>Kiểm tra xem mật khẩu có đủ mạnh hay không. Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường, số và ký tự đặc biệt.</td>
+    </tr>
   </tbody>
 </table>
-
 <p>
   <strong>- Tham số Selector:</strong> Truyền vào <code>id</code> của thẻ <code>input</code> cần validate.<br />
   <strong>- Tham số Message:</strong> Tham số này không bắt buộc. Nếu không được cung cấp, hệ thống sẽ dùng thông báo mặc định.<br />
   <strong>- Tham số minLength(number):</strong> Chỉ áp dụng cho <code>Validator.minLength</code>, nếu không được cung cấp sẽ bỏ qua kiểm tra độ dài.<br />
+  <strong>- Tham số maxLength(number):</strong> Chỉ áp dụng cho <code>Validator.maxLength</code>, nếu không được cung cấp sẽ bỏ qua kiểm tra độ dài.<br />
   <strong>- Tham số function() { return value; }:</strong> Chỉ áp dụng cho <code>Validator.isConfirmed</code>. Hàm này trả về giá trị cần so sánh với trường khác.
 </p>
 
