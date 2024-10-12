@@ -6,31 +6,33 @@
 
 <pre><code>&lt;script src="https://cdn.jsdelivr.net/gh/tuanduong1907/fui-validate@main/fui-validate.min.js"&gt;&lt;/script&gt;</code></pre>
 
-## Example:
+<h2>Example:</h2>
 
-### Cấu trúc HTML form:
+<h3>Cấu trúc HTML form:</h3>
 
-```html
-<form id="form">
-    <div class="form-group">
-        <input type="text" id="fullname" name="fullname" placeholder="Nhập họ và tên..." />
-        <p class="form-message"></p>
-    </div>
-    <div class="form-group">
-        <input type="email" id="email" name="email" placeholder="Nhập địa chỉ email..." />
-        <p class="form-message"></p>
-    </div>
-    <div class="form-group">
-        <input type="password" id="password" name="password" placeholder="Nhập mật khẩu..." />
-        <p class="form-message"></p>
-    </div>
-    <button type="submit">Submit</button>
-</form>
-```
-### Cách sử dụng (Gọi trong file JS):
+<pre><code>&lt;form id="form"&gt;
+    &lt;div class="form-group"&gt;
+        &lt;input type="text" id="fullname" name="fullname" placeholder="Nhập họ và tên..." /&gt;
+        &lt;p class="form-message"&gt;&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="form-group"&gt;
+        &lt;input type="email" id="email" name="email" placeholder="Nhập địa chỉ email..." /&gt;
+        &lt;p class="form-message"&gt;&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="form-group"&gt;
+        &lt;input type="password" id="password" name="password" placeholder="Nhập mật khẩu..." /&gt;
+        &lt;p class="form-message"&gt;&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="form-group"&gt;
+        &lt;input type="password" id="password-confirm" name="password-confirm" placeholder="Xác nhận mật khẩu..." /&gt;
+        &lt;p class="form-message"&gt;&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</code></pre>
 
-<pre>
-Validator({
+<h3>Cách sử dụng (Gọi trong file JS):</h3>
+
+<pre><code>Validator({
     form: "#form",
     formGroupSelector: ".form-group",
     errorSelector: ".form-message",
@@ -38,12 +40,14 @@ Validator({
         Validator.isRequired("#fullname", "Vui lòng nhập tên đầy đủ của bạn"),
         Validator.isEmail("#email", "Vui lòng nhập email hợp lệ"),
         Validator.minLength("#password", 6, "Mật khẩu phải có ít nhất 6 ký tự"),
+        Validator.isConfirmed("#password-confirm", function() {
+            return document.querySelector("#password").value;
+        }, "Mật khẩu xác nhận không khớp"),
     ],
     onSubmit: function (data) {
         console.log(data);  // Dữ liệu form sau khi xác thực thành công
     },
-});
-</pre>
+});</code></pre>
 
 <h3>💡 Lưu ý:</h3>
 <ul>
@@ -82,6 +86,31 @@ Validator({
       <td><code>Validator.isConfirmed("Selector", function() { return value; }, "Message")</code></td>
       <td>Kiểm tra xem giá trị nhập vào có khớp với giá trị của một trường khác (ví dụ: xác nhận mật khẩu).</td>
     </tr>
+    <tr>
+      <td><code>isStrongPassword</code></td>
+      <td><code>Validator.isStrongPassword("Selector", "Message")</code></td>
+      <td>Kiểm tra xem mật khẩu có đủ mạnh hay không. Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường, số và ký tự đặc biệt.</td>
+    </tr>
+    <tr>
+      <td><code>isAlphabet</code></td>
+      <td><code>Validator.isAlphabet("Selector", "Message")</code></td>
+      <td>Kiểm tra xem giá trị của trường có chỉ chứa chữ cái hay không.</td>
+    </tr>
+    <tr>
+      <td><code>isPhoneNumber</code></td>
+      <td><code>Validator.isPhoneNumber("Selector", "Message")</code></td>
+      <td>Kiểm tra xem giá trị của trường có phải là số điện thoại hợp lệ hay không.</td>
+    </tr>
+    <tr>
+      <td><code>hasSpecialChar</code></td>
+      <td><code>Validator.hasSpecialChar("Selector", "Message")</code></td>
+      <td>Kiểm tra xem giá trị nhập vào có ít nhất một ký tự đặc biệt hay không.</td>
+    </tr>
+    <tr>
+      <td><code>isUrl</code></td>
+      <td><code>Validator.isUrl("Selector", "Message")</code></td>
+      <td>Kiểm tra xem giá trị nhập vào có phải là một URL hợp lệ hay không.</td>
+    </tr>
   </tbody>
 </table>
 
@@ -108,4 +137,11 @@ Validator({
   <pre><code>Validator.isConfirmed("#password", function() {
     return document.querySelector("#password-confirm").value;
   }, "Mật khẩu xác nhận không khớp");</code></pre>
-</ol>
+
+  <li><strong>isStrongPassword (Mật Khẩu Mạnh):</strong></li>
+  <pre><code>Validator.isStrongPassword("#password", "Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường, số và ký tự đặc biệt");</code></pre>
+
+  <li><strong>isAlphabet (Chỉ Chứa Chữ Cái):</strong></li>
+  <pre><code>Validator.isAlphabet("#fullname", "Vui lòng chỉ nhập chữ cái");</code></pre>
+
+  <li><strong>isPhoneNumber (Số Điện Thoại Hợp Lệ):</strong></
