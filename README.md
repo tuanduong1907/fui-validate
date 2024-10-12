@@ -57,7 +57,7 @@
 </ul>
 
 <h3>⚙️ Validation Rules:</h3>
-<h3>⚙️ Validation Rules:</h3>
+
 <table>
   <thead>
     <tr>
