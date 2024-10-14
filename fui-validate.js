@@ -18,13 +18,13 @@ function Validator(options) {
             console.error('Không tìm thấy phần tử cha của:', inputElement);
             return false;
         }
-    
+
         var errorElement = formGroupElement.querySelector(options.errorSelector);
         var errorMessage;
-    
-        // Get Rules Of Selector 
+
+        // Get Rules Of Selector
         var rules = selectorRules[rule.selector];
-    
+
         // Lặp qua từng rules và kiểm tra
         // Nếu có lỗi thì dừng kiểm tra
         for (var i = 0; i < rules.length; i++) {
@@ -40,18 +40,27 @@ function Validator(options) {
             }
             if (errorMessage) break;
         }
-    
+
         if (errorMessage) {
             errorElement.innerText = errorMessage;
             formGroupElement.classList.add('invalid');
+
+            // Highlight error if option is enabled
+            if (options.highlightError) {
+                inputElement.style.borderColor = 'rgb(239 68 68)'; // Highlight with red border
+            }
         } else {
             errorElement.innerText = '';
             formGroupElement.classList.remove('invalid');
+            
+            // Remove highlight if error is corrected
+            if (options.highlightError) {
+                inputElement.style.borderColor = ''; // Reset border color
+            }
         }
-    
+
         return !errorMessage;
     }
-    
 
     // Get Element Form Validate
     var formElement = document.querySelector(options.form);
@@ -137,12 +146,16 @@ function Validator(options) {
                     var errorElement = getParent(inputElement, options.formGroupSelector).querySelector(options.errorSelector);
                     errorElement.innerText = '';
                     getParent(inputElement, options.formGroupSelector).classList.remove('invalid');
+
+                    // Reset highlight on input if any
+                    if (options.highlightError) {
+                        inputElement.style.borderColor = ''; // Reset border color
+                    }
                 };
             });
         });
     }
 }
-
 // Define Rules 
 // Handle Rule
 Validator.isRequired = function (selector, message) {
